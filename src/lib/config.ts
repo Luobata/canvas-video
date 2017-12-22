@@ -6,5 +6,6 @@ export const config: canvasConfig = {
     canvas: null,
     ctx: null,
 };
-export const setConfig = (config: canvasConfig) => {
+export const setConfig = (conf: canvasConfig) => {
+    Object.assign(config, conf);
 };
