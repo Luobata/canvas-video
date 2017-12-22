@@ -18,6 +18,13 @@ module.exports = {
         publicPath: '/',
         filename: "bundle.js"
     },
+    resolve: {
+        extensions: ['json', '.js', '.ts'],
+        alias: {
+            'LIB': path.resolve(__dirname, '../src/lib'),
+            'MODEL': path.resolve(__dirname, '../src/script/data/model'),
+        }
+    },
 
     module: {
         loaders: [

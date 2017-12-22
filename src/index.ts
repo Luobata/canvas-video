@@ -1,6 +1,9 @@
-function greeter(person: string) {
-    return "Hello, " + person;
-}
+import { setConfig } from './lib/config';
 
-let user = "Jane User";
-console.log(user);
+export default (canvas: HTMLCanvasElement) => {
+    const ctx = canvas.getContext('2d');
+    setConfig({
+        canvas,
+        ctx,
+    });
+};
