@@ -30,7 +30,7 @@ app.use(devMiddleware);
 // enable hot-reload and state-preserving
 // compilation error display
 app.use(hotMiddleware);
-
+app.use('/src', express.static('./src/video'));
 // api
 var port = 9598;
 module.exports = app.listen(port, function (err) {

@@ -24,10 +24,26 @@
             background-color: #D3D3D3;
             -webkit-border-radius: 5px;
         }
+        .video-wrap {
+            display: inline-block;
+        }
+        #anlyse {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        /*#video {
+            width: 100%;
+            height: 500px;
+        }*/
     </style>
 </head>
 <body>
+    <div class="video-wrap">
+        <video id="video" width="300" height="500" src="src/test.mp4" controls="true"/>
+    </div>
     <canvas id="canvas"></canvas>
+    <button class="anlyse" id="anlyse"></button>
     <script type="text/javascript" src="./dist/bundle.js"></script>
     <script type="text/javascript">
     </script>

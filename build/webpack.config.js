@@ -22,7 +22,7 @@ module.exports = {
         extensions: ['json', '.js', '.ts'],
         alias: {
             'LIB': path.resolve(__dirname, '../src/lib'),
-            'MODEL': path.resolve(__dirname, '../src/script/data/model'),
+            'CONVERT': path.resolve(__dirname, '../src/convert'),
         }
     },
 
