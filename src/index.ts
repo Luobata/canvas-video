@@ -27,12 +27,16 @@ const getGif = (frameList: Array<CanvasRenderingContext2D>, width: number, heigh
 
     for (let i of frameList) {
         gif.addFrame(i, {
+            delay: 1,
             copy: true,
         });
     }
 
     gif.on('finished', function(blob: Blob) {
-        window.open(URL.createObjectURL(blob));
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(blob);
+        //window.open(URL.createObjectURL(blob));
+        document.body.appendChild(img);
     });
 
     gif.render();
@@ -72,7 +76,7 @@ export default class Video {
         //return config.offCtx.getImageData(0, 0, width, height);
         //return config.offCanvas;
         //return config.offCtx;
-        return this.video;
+        return a;
     };
 
 
