@@ -13,14 +13,16 @@ const beginCap = function beginCap() {
             beginCap.call(this);
         });
     } else {
-        this.end();
+        //this.end();
     }
 };
 
-const getGif = (frameList: Array<CanvasRenderingContext2D>) => {
+const getGif = (frameList: Array<CanvasRenderingContext2D>, width: number, height: number) => {
     const gif = new GIF({
         workers: 2,
         quality: 10,
+        width,
+        height,
     });
 
     for (let i of frameList) {
@@ -48,7 +50,6 @@ export default class Video {
         this.beginFlag = false;
         this.frameList = [];
         this.video = video;
-        console.log(this);
 
         setConfig({
             canvas,
@@ -65,9 +66,13 @@ export default class Video {
         config.offCanvas.width = width;
         config.offCanvas.height = height;
         config.offCtx.drawImage(this.video, 0, 0, width, height);
+        const a = config.offCtx.getImageData(0, 0, width, height);
+        const b = config.offCanvas.toDataURL('image/jpeg', 1.0);
 
         //return config.offCtx.getImageData(0, 0, width, height);
-        return config.offCanvas;
+        //return config.offCanvas;
+        //return config.offCtx;
+        return this.video;
     };
 
 
@@ -79,6 +84,6 @@ export default class Video {
     end () {
         this.beginFlag = false;
 
-        return getGif(this.frameList);
+        return getGif(this.frameList, config.offCanvas.width, config.offCanvas.height);
     };
 };
