@@ -1,10 +1,16 @@
-import init from '../src/index.ts';
+import Video from '../src/index.ts';
 
 var canvas = document.getElementById('canvas');
 var video = document.getElementById('video');
-var anlyse = document.getElementById('anlyse');
-var convert = init(canvas, video);
+var begin = document.getElementById('begin');
+var end = document.getElementById('end');
+var convert = new Video(canvas, video);
 
-anlyse.addEventListener('click', () => {
-    convert();
+begin.addEventListener('click', () => {
+    video.play();
+    convert.begin();
+});
+end.addEventListener('click', () => {
+    video.pause();
+    convert.end();
 });
