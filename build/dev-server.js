@@ -31,7 +31,7 @@ app.use(devMiddleware);
 // compilation error display
 app.use(hotMiddleware);
 app.use('/src', express.static('./src/video'));
-app.use('/dist', express.static('./src/lib/dist'));
+app.use('/', express.static('./src/lib/dist'));
 // api
 var port = 9598;
 module.exports = app.listen(port, function (err) {

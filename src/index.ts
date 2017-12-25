@@ -9,7 +9,9 @@ const beginCap = function beginCap() {
     if (!this.video.ended && this.beginFlag) {
         const frame = this.getFrame();
         this.frameList.push(frame);
-        window.requestAnimationFrame(beginCap.call(this));
+        window.requestAnimationFrame(() => {
+            beginCap.call(this);
+        });
     } else {
         this.end();
     }
