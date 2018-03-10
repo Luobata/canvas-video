@@ -3,7 +3,7 @@ import convert from 'CONVERT/frame';
 
 declare const GIF: {
     new (config: object): any;
-}
+};
 
 const beginCap = function beginCap() {
     if (!this.video.ended && this.beginFlag) {
@@ -17,7 +17,11 @@ const beginCap = function beginCap() {
     }
 };
 
-const getGif = (frameList: Array<CanvasRenderingContext2D>, width: number, height: number) => {
+const getGif = (
+    frameList: Array<CanvasRenderingContext2D>,
+    width: number,
+    height: number,
+) => {
     const gif = new GIF({
         workers: 2,
         quality: 10,
@@ -27,7 +31,7 @@ const getGif = (frameList: Array<CanvasRenderingContext2D>, width: number, heigh
 
     for (let i of frameList) {
         gif.addFrame(i, {
-            delay: 1,
+            delay: 1000 / 60,
             copy: true,
         });
     }
@@ -47,7 +51,7 @@ export default class Video {
     frameList: Array<CanvasRenderingContext2D>;
     video: HTMLVideoElement;
 
-    constructor (canvas: HTMLCanvasElement, video: HTMLVideoElement) {
+    constructor(canvas: HTMLCanvasElement, video: HTMLVideoElement) {
         const ctx = canvas.getContext('2d');
         const offCanvas = document.createElement('canvas');
         const offCtx = offCanvas.getContext('2d');
@@ -61,10 +65,9 @@ export default class Video {
             offCanvas,
             offCtx,
         });
+    }
 
-    };
-
-    getFrame () {
+    getFrame() {
         const width = this.video.width || config.canvas.width;
         const height = this.video.height || config.canvas.height;
         config.offCanvas.width = width;
@@ -77,17 +80,20 @@ export default class Video {
         //return config.offCanvas;
         //return config.offCtx;
         return a;
-    };
-
+    }
 
     begin() {
         this.beginFlag = true;
         beginCap.call(this);
-    };
+    }
 
-    end () {
+    end() {
         this.beginFlag = false;
 
-        return getGif(this.frameList, config.offCanvas.width, config.offCanvas.height);
-    };
-};
+        return getGif(
+            this.frameList,
+            config.offCanvas.width,
+            config.offCanvas.height,
+        );
+    }
+}
