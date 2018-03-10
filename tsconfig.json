@@ -4,11 +4,16 @@
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es5",
+        "target": "es6",
         "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "paths": {
+            "LIB/*": ["src/lib/*"],
+            "CONVERT/*": ["src/convert/*"]
+        },
         "lib": ["es2015", "es2017", "dom"]
     },
-    "include": [
-        "./src/**/*"
-    ]
+    "include": ["./src/**/*"]
 }
